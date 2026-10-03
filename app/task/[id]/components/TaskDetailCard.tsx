@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Badge } from '@/app/components/ui/badge';
 import { Todo } from'@/types/todo';
 
 type TaskDetailCardProps = {
@@ -25,23 +26,18 @@ export default function TaskDetailCard({ todo }: TaskDetailCardProps) {
                         <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                             ID Tugas
                         </label>
-                        <p className="text-gray-700 font-medium">#{todo.id}</p>
+                        <div className="mt-1">
+                            <Badge variant="purple" size ="default">
+                                #{todo.id}
+                            </Badge>
+                        </div>
                     </div>
 
                      <div>
                         <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
                             Judul Tugas
                         </label>
-                        <p className="text-gray-700 font-medium">{todo.title}</p>
-                    </div>
-
-                     <div>
-                        <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                        Dekripsi
-                        </label>
-                        <p className="text-gray-700 font-medium">
-                            {todo.description}
-                        </p>
+                        <h2 className="text-xl font-bold text-dark-130 mt-0.5">{todo.title}</h2>
                     </div>
 
                     <div>
@@ -49,15 +45,12 @@ export default function TaskDetailCard({ todo }: TaskDetailCardProps) {
                             Status
                         </label>
                         <div className="mt-1">
-                            <span
-                            className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${
-                                todo.completed
-                                ? 'bg-green-100 text-green-700 border border-green-200'
-                                : 'bg-yellow-100 text-yellow-700 border border-yellow-200'
-                            }`}
-                        >
-                            {todo.completed ? 'Selesai' : 'Belum Selesai'}
-                        </span>
+                            <Badge
+                                variant={todo.completed ? 'green' : 'yellow'}
+                                size="sm"
+                            >
+                                {todo.completed ? 'Selesai' : 'Belum Selesai'}
+                            </Badge>
                         </div>
                     </div>
                 
@@ -65,7 +58,7 @@ export default function TaskDetailCard({ todo }: TaskDetailCardProps) {
                     <label className="text-xs font-semibold text-gray-400  uppercase tracking-wider">
                         Tanggal dibuat
                     </label>
-                    <p className="text-gray-600 text-sm mt-1">{todo.createdAt}</p>
+                    <p className="text-muted text-sm mt-1">{todo.createdAt}</p>
                 </div>
                 </div>
             </div>
